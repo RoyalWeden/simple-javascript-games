@@ -295,7 +295,7 @@ export default function SnakeGame() {
                                 {!isLost ? (
                                     <Button
                                         colorScheme='teal'
-                                        height={15}
+                                        height={10}
                                         width={100}
                                         variant='outline'
                                         onClick={startGame}
@@ -315,7 +315,7 @@ export default function SnakeGame() {
                                 )}
                             </section>
                             {isLost && (
-                                <div className="game-overlay">
+                                <Box className="game-overlay" fontSize={12} pt={3} pb={10}>
                                     <p className="large">Game Over</p>
                                     <p className="final-score">
                                         {newHighscore ? `🎉 New Highscore 🎉 : ${score}` : `You scored: ${score}`}
@@ -331,9 +331,9 @@ export default function SnakeGame() {
                                             Restart Game
                                         </Button>
                                     )}
-                                </div>
+                                </Box>
                             )}
-                            <Link href='/'>
+                            <Link href='/' pt={50}>
                                 <Button
                                     height={10}
                                     width={100}
