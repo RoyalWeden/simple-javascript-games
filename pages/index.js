@@ -1,17 +1,28 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import {
+  Heading,
+  Link,
+  Container,
+  Button
+} from '@chakra-ui/react'
+import Layout from '../components/layouts/article'
 
 export default function Home() {
   return (
-    <div>
-      <Head>
-        <title>Games</title>
-      </Head>
-      <h1>
+    <Layout>
+      <Container maxW='container.md'>
+        <Head>
+          <title>SimpleGames</title>
+        </Head>
+        <Heading pb={10}>
+          SimpleGames
+        </Heading>
         <Link href="/snake">
-          <a>Snake Game (click me)</a>
+          <Button width={100} height={50} fontSize='15px' variant='outline'>
+              <a>Snake</a>
+          </Button>
         </Link>
-      </h1>
-    </div>
+      </Container>
+    </Layout>
   )
 }

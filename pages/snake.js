@@ -5,8 +5,10 @@ import {
     SimpleGrid,
     Box,
     Button,
-    Container
+    Container,
+    Link
 } from '@chakra-ui/react'
+import Layout from '../components/layouts/article'
 
 export default function SnakeGame() {
     // Canvas Settings
@@ -16,7 +18,7 @@ export default function SnakeGame() {
     const canvasGridSize = 25
 
     // Game Settings
-    const gameSpeed = 5
+    const gameSpeed = 7
 
     // Game State
     const [gameDelay, setGameDelay] = useState(1000/gameSpeed)
@@ -59,6 +61,7 @@ export default function SnakeGame() {
             y: 15,
             body: []
         })
+        setDirection({dx: 1, dy: 0})
         setApple(generateApplePosition())
         setRunning(true)
         setNewHighscore(false)
@@ -265,75 +268,84 @@ export default function SnakeGame() {
         return () => {
             document.removeEventListener('keydown', handleKeyDown)
         }
-    }, [direction])
+    }, [snake])
 
     return (
         <>
-            <Head>
-                <title>Snake Game</title>
-            </Head>
-            <Container centerContent>
-                <SimpleGrid columns={[1, 2, 2]} spacing='25px'>
-                    <Box maxW='xl' p={5}>
-                        <canvas
-                            ref={canvasRef}
-                            width={canvasWidth+1}
-                            height={canvasHeight+1}
-                        />
-                    </Box>
-                    <Box max='sm' p={5}>
-                        <section>
-                            <div className="score">
-                                <p>
-                                    Score: {score}
-                                </p>
-                            </div>
-                            {!isLost ? (
-                                <Button
-                                    colorScheme='teal'
-                                    size='md'
-                                    height='50px'
-                                    width='200px'
-                                    variant='outline'
-                                    onClick={startGame}
-                                >
-                                    Start Game
-                                </Button>
-                            ) : (
-                                <div className="controls">
-                                    {/* <p>How to Play?</p>
+            <Layout>
+                <Head>
+                    <title>Snake Game</title>
+                </Head>
+                <Container maxW='container.lg' centerContent>
+                    <SimpleGrid columns={[1, 2, 2]} spacing={200}>
+                        <Box maxW='xl' p={5}>
+                            <canvas
+                                ref={canvasRef}
+                                width={canvasWidth+1}
+                                height={canvasHeight+1}
+                            />
+                        </Box>
+                        <Box maxW='sm' p={5} verticalAlign='top'>
+                            <section>
+                                <div className="score">
                                     <p>
-                                        up,
-                                        right,
-                                        down,
-                                        left
-                                    </p> */}
+                                        Score: {score}
+                                    </p>
                                 </div>
-                            )}
-                        </section>
-                        {isLost && (
-                            <div className="game-overlay">
-                                <p className="large">Game Over</p>
-                                <p className="final-score">
-                                    {newHighscore ? `🎉 New Highscore 🎉 : ${score}` : `You scored: ${score}`}
-                                </p>
-                                {!running && isLost && (
+                                {!isLost ? (
                                     <Button
                                         colorScheme='teal'
-                                        size='md'
-                                        height='50px'
-                                        width='200px'
+                                        height={15}
+                                        width={100}
                                         variant='outline'
                                         onClick={startGame}
                                     >
-                                        Restart Game
+                                        Start Game
                                     </Button>
+                                ) : (
+                                    <div className="controls">
+                                        {/* <p>How to Play?</p>
+                                        <p>
+                                            up,
+                                            right,
+                                            down,
+                                            left
+                                        </p> */}
+                                    </div>
                                 )}
-                            </div>
-                        )}
-                    </Box>
-                </SimpleGrid>
-            </Container>
+                            </section>
+                            {isLost && (
+                                <div className="game-overlay">
+                                    <p className="large">Game Over</p>
+                                    <p className="final-score">
+                                        {newHighscore ? `🎉 New Highscore 🎉 : ${score}` : `You scored: ${score}`}
+                                    </p>
+                                    {!running && isLost && (
+                                        <Button
+                                            colorScheme='teal'
+                                            height={10}
+                                            width={100}
+                                            variant='outline'
+                                            onClick={startGame}
+                                        >
+                                            Restart Game
+                                        </Button>
+                                    )}
+                                </div>
+                            )}
+                            <Link href='/'>
+                                <Button
+                                    height={10}
+                                    width={100}
+                                    variant='outline'
+                                >
+                                    Home
+                                </Button>
+                            </Link>
+                        </Box>
+                    </SimpleGrid>
+                </Container>
+            </Layout>
         </>
     )
 }

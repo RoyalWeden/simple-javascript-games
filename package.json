@@ -1,5 +1,5 @@
 {
-  "name": "phaser-tutorial-game",
+  "name": "simplegames",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icon": "^2.0.5",
+    "@chakra-ui/layout": "^1.7.6",
     "@chakra-ui/react": "^1.8.5",
     "@use-it/interval": "^1.0.0",
+    "framer-motion": "^6.2.8",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
