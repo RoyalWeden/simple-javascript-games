@@ -204,7 +204,7 @@ export default function SnakeGame() {
             drawApple(ctx)
             drawSnake(ctx)
         }
-    }, [apple, snake])
+    }, [apple, snake, direction])
 
     // Game Update Interval
     useInterval(
@@ -333,7 +333,7 @@ export default function SnakeGame() {
                                     )}
                                 </Box>
                             )}
-                            <Link href='/' pt={50}>
+                            <Link href='/'>
                                 <Button
                                     height={10}
                                     width={100}
